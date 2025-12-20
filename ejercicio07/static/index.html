@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Equipos de Fútbol</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>API de Equipos de Fútbol</h1>
+            <p>Gestiona equipos mediante una API REST</p>
+        </header>
+
+        <main>
+            <!-- SECCIÓN: LISTAR EQUIPOS -->
+            <section class="card">
+                <h2>Listar Todos los Equipos</h2>
+                <p>GET /equipos</p>
+                <button onclick="listarEquipos()" class="btn btn-primary">Listar Equipos</button>
+            </section>
+
+            <!-- SECCIÓN: AGREGAR EQUIPO -->
+            <section class="card">
+                <h2>Agregar Nuevo Equipo</h2>
+                <p>POST /equipos</p>
+                <form id="formAgregar" onsubmit="agregarEquipo(event)">
+                    <div class="form-group">
+                        <label for="nombre">Nombre del Equipo:</label>
+                        <input type="text" id="nombre" name="nombre" required 
+                               placeholder="Ej: Liverpool">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad:</label>
+                        <input type="text" id="ciudad" name="ciudad" required 
+                               placeholder="Ej: Liverpool">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nivelAtaque">Nivel Ataque (1-10):</label>
+                            <input type="number" id="nivelAtaque" name="nivelAtaque" 
+                                   min="1" max="10" required value="5">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nivelDefensa">Nivel Defensa (1-10):</label>
+                            <input type="number" id="nivelDefensa" name="nivelDefensa" 
+                                   min="1" max="10" required value="5">
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Agregar Equipo</button>
+                </form>
+            </section>
+
+            <!-- SECCIÓN: BUSCAR POR ID -->
+            <section class="card">
+                <h2>Buscar Equipo por ID</h2>
+                <p>GET /equipos/&lt;id&gt;</p>
+                <div class="form-row">
+                    <input type="number" id="idBuscar" placeholder="ID del equipo" 
+                           min="1" value="1">
+                    <button onclick="buscarEquipo()" class="btn btn-info">Buscar</button>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: RESULTADO -->
+            <section class="card resultado">
+                <h2>Resultado de la Petición</h2>
+                <div id="statusCode" class="status-code"></div>
+                <pre id="resultado">Aquí aparecerá el resultado de las peticiones...</pre>
+            </section>
+        </main>
+
+        <footer>
+            <p>Desarrollado con WSGI Python</p>
+        </footer>
+    </div>
+</body>
+</html>
